@@ -1,5 +1,7 @@
 Next steps:
 
+--Wednesday 12/20 tasks: adding address to line items and creating download link
+
 update headers on TS files
     -copy code from master for header updates
 
