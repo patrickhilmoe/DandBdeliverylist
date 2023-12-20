@@ -1,0 +1,27 @@
+Next steps:
+
+update headers on TS files
+    -copy code from master for header updates
+
+create test files
+    -use object creator to make usable files
+    -trim files for optimal speed
+
+function for trimming line item file to keep orders on open order sheet
+
+funciton for adding address info to line items
+
+function for removing unneeded key/value pairs
+
+process through service time function
+
+create a download link for converted object to excel
+    (original attempt was missing non-serialized items. don't know why still)
+
+extra: deleting 'star' items
+
+*is there a way to format object to insert key (excel column) in between others. To format for DT upload*
+
+in excel:
+    format columns
+    delete star items
