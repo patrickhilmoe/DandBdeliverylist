@@ -27,3 +27,7 @@ extra: deleting 'star' items
 in excel:
     format columns
     delete star items
+
+    
+// taglist header names
+// OrderNumber	CustomerNumber	CustomerName	Salesperson	StockShipped	Description1	ShippingDate	QuantityToShip	LocationNumber	Row	Tagging	Oldest	Quantity
