@@ -1,6 +1,5 @@
 import * as XLSX from 'xlsx';
 import {useState} from 'react';
-import Rename from './renameheader';
 
 
 function ExceltoObject() {
@@ -52,7 +51,6 @@ function ExceltoObject() {
             }}
           />
           <button onClick={PrintObject}>Print Object in the Console</button>
-          <button onClick={Rename}>button</button>
         </div>
     )
 }
