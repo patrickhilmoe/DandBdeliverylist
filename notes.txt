@@ -1,32 +1,50 @@
 Next steps:
 
---Wednesday 12/20 tasks: adding address to line items and creating download link
-
-update headers on TS files
+update headers on TS files - DONE
     -copy code from master for header updates
 
-create test files
+create test files - DONE
     -use object creator to make usable files
     -trim files for optimal speed
 
-function for trimming line item file to keep orders on open order sheet
+function for trimming line item file to keep orders on open order sheet - DONE **BUT NEEDS TO BE TESTED**
 
-funciton for adding address info to line items
+funciton for adding address info to line items - DONE
 
-function for removing unneeded key/value pairs
+function for removing unneeded key/value pairs - DONE (deleted in rename function)
 
-process through service time function
+process through service time function - DONE **still needs to catch last order grouping**
 
-create a download link for converted object to excel
+create a download link for converted object to excel -DONE (looks to be done)
     (original attempt was missing non-serialized items. don't know why still)
 
 extra: deleting 'star' items
+extra: creating drag and drop locations for files on web page
 
 *is there a way to format object to insert key (excel column) in between others. To format for DT upload*
 
 in excel:
     format columns
     delete star items
+
+-----------------------------------
+
+Next big chunck : COMPARING AND UPDATING CHANGES TO THE LIST
+
+making an area of shop items order numbers
+
+make an '<li>' list of excel file on web page
+
+loop checking for changes in all key value pairs. 
+    -create new array of new objects/lines and differences in key/values ie. model updates, location updates
+    -if ordernumber doesn't exist immediately add to existing list
+
+extra: 
+    add interaction to:
+        discard unneeded objects/lines
+        add object/line additions
+        update changes like modelnumber and location
+    
 
     
 // taglist header names
