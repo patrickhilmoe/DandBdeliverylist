@@ -1,5 +1,6 @@
-function AddtoLineitems () {
-    const SampleOpenOrder =    [
+import { ServiceTime } from './service-time'
+
+    export const SampleOpenOrder =    [
         {
             "Ship-toCity": "BELLINGHAM",
             "Salesperson": 304,
@@ -13,7 +14,7 @@ function AddtoLineitems () {
         }
     ]
     
-    const SampleLineItems = [
+    export const SampleLineItems = [
         {
             "OrderNumber": 11314787,
             "LineNumber": 80,
@@ -45,10 +46,10 @@ function AddtoLineitems () {
             "EtendedPrice": 2969
         },
         {
-            "OrderNumber": 11314787,
+            "OrderNumber": 11314788,
             "LineNumber": 100,
             "CustomerNumber": 98941,
-            "CustomerName": "CASSELLA, EJ",
+            "CustomerName": "placeholder name",
             "LineNumber_1": 100,
             "StockShipped": "*DELIVERY",
             "ServiceCode": "",
@@ -61,7 +62,7 @@ function AddtoLineitems () {
         }
     ];
     
-    const SampleAddresses = [
+    export const SampleAddresses = [
         {
             "@VAR_BILLNAME=": "@VAR_BILLNAME=",
             "Bill-to Name": "CASSELLA, EJ",
@@ -78,15 +79,15 @@ function AddtoLineitems () {
             "@VAR_SHIPNAME=": "@VAR_SHIPNAME=",
             "Ship-to Name": "CASSELLA, EJ",
             "@VAR_SHIPADD1=": "@VAR_SHIPADD1=",
-            "Ship-to Address 1": "1012 E TOLEDO ST",
+            "ShiptoAddress1": "1012 E TOLEDO ST",
             "@VAR_SHIPADD2=": "@VAR_SHIPADD2=",
-            "Ship-to Address 2": "",
+            "ShiptoAddress2": "",
             "@VAR_SHIPCITY=": "@VAR_SHIPCITY=",
-            "Ship-to City": "BELLINGHAM",
+            "ShiptoCity": "BELLINGHAM",
             "@VAR_SHIPST=": "@VAR_SHIPST=",
-            "Ship-to State": "WA",
+            "ShiptoState": "WA",
             "@VAR_SHIPZIP=": "@VAR_SHIPZIP=",
-            "Ship-to Zip Code": "98229",
+            "ShiptoZipCode": "98229",
             "@VAR_STATUS=": "@VAR_STATUS=",
             "Entered": "Entered",
             "Only": "Only",
@@ -222,15 +223,45 @@ function AddtoLineitems () {
         }
     ];
 
-    function LineitemAdd () {
-        forEach.SampleLineItems((x) => {
-            forEach.SampleAddresses((y) => {
-                if(x.OrderNumber === y.OrderNumber) {
+    export let processedlist = [];
 
+    // adding address to each line item
+    export const LineitemAdd = (lineitems, addresses, stararr, catarr) => {
+        lineitems.forEach((x) => {
+            addresses.forEach((y) => {
+                if(x.OrderNumber === y.OrderNumber) {
+                    x.ShiptoAddress1 = y.ShiptoAddress1;
+                    x.ShiptoAddress2 = y.ShiptoAddress2;
+                    x.ShiptoCity = y.ShiptoCity;
+                    x.ShiptoState = y.ShiptoState;
+                    x.ShiptoZipCode = y.ShiptoZipCode;
                 }
             })
         })
+        console.log(lineitems);
+        ServiceTime(lineitems, stararr, catarr);
+        processedlist = lineitems
+        console.log("processed list is:")
+        console.table(processedlist);
     }
-}
 
-export default AddtoLineitems;
+    // LineitemAdd(SampleLineItems, SampleAddresses);
+
+    //Sift through open order sheet and line item sheet for only order sheet orders
+
+
+    export const Orders = (openorders, lineitems) => {
+
+        let orders =[];
+        openorders.forEach((x) => {
+            lineitems.forEach((y) => {
+                if(x.OrderNumber === y.OrderNumber) {
+                    orders.push(x);
+                }
+            })
+        })
+        console.log(orders);
+    }
+
+    // Orders(SampleOpenOrder, SampleLineItems);
+
