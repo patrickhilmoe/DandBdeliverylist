@@ -1,6 +1,5 @@
 
-function RenameHeaders() {
-function LineItemKeyUpdate(array) {
+export const LineItemKeyUpdate = (array) => {
     let updatedArray = array.map(item => {
         item['OrderNumber'] = item['Order Number'];
         delete item['Order Number'];
@@ -26,7 +25,7 @@ function LineItemKeyUpdate(array) {
   };
 
 
-function AddressItemKeyUpdate(array) {
+export const AddressItemKeyUpdate =(array) => {
     let updatedArray = array.map(item => {
         item['OrderNumber'] = item['Order Number'];
         delete item['Order Number'];
@@ -45,7 +44,7 @@ function AddressItemKeyUpdate(array) {
     })
 }
 
-function OpenOrderKeyUpdate(array) {
+export const OpenOrderKeyUpdate = (array) => {
     let updatedArray = array.map(item => {
         item['OrderNumber'] = item['Order Number'];
         delete item['Order Number'];
@@ -58,7 +57,6 @@ function OpenOrderKeyUpdate(array) {
         item['ShippingDate'] = item['Shipping Date'];
         delete item['Shipping Date'];
     })
-    console.log(array);
 }
 
 
@@ -282,7 +280,3 @@ const SampleAddresses = [
         "Payments": 0
     }
 ];
-
-}
-
-export default RenameHeaders;

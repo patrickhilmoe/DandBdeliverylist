@@ -23389,7 +23389,7 @@ export const stockWithCat = [
         "QtyOnRequisition": 1
     },
     {
-        "Model": "WM3400CW-LG",
+        "Model": "WM3400CW",
         "Brand": "LG",
         "Loc": "001",
         "StockDescription1": "LG 27\" Front Load Washer",
@@ -24371,7 +24371,7 @@ export const stockWithCat = [
         "QtyOnRequisition": 0
     },
     {
-        "Model": "DLE3400W-LG",
+        "Model": "DLE3400W",
         "Brand": "LGE",
         "Loc": "300",
         "StockDescription1": "LG 27\" Electric Dryer",
