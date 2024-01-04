@@ -1,20 +1,5 @@
 Next steps:
 
-update headers on TS files - DONE
-    -copy code from master for header updates
-
-create test files - DONE
-    -use object creator to make usable files
-    -trim files for optimal speed
-
-function for trimming line item file to keep orders on open order sheet - DONE **BUT NEEDS TO BE TESTED**
-
-funciton for adding address info to line items - DONE
-
-function for removing unneeded key/value pairs - DONE (deleted in rename function)
-
-process through service time function - DONE **still needs to catch last order grouping**
-
 create a download link for converted object to excel -DONE (looks to be done)
     (original attempt was missing non-serialized items. don't know why still)
 
@@ -26,6 +11,9 @@ extra: creating drag and drop locations for files on web page
 in excel:
     format columns
     delete star items
+
+Set up another page for the converter function
+add header and footer ( use example from bootcamp class)
 
 -----------------------------------
 

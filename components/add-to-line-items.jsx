@@ -1,16 +1,94 @@
 import { ServiceTime } from './service-time'
+import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './renameheader'
 
     export const SampleOpenOrder =    [
         {
-            "Ship-toCity": "BELLINGHAM",
+            "Ship-to City": "BELLINGHAM",
             "Salesperson": 304,
-            "OrderNumber": 11314787,
-            "OrderDate": 45147,
-            "CustomerNumber": 98941,
-            "CustomerName": "CASSELLA, EJ",
-            "ShippingDate": 45278,
-            "TotalInvoiceAmt": 3328.08,
-            "TotalAllPayments": 3328.08
+            "Order Number": 11314787,
+            "Order Date": 45147,
+            "Customer Number": 98941,
+            "Customer Name": "CASSELLA, EJ",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 3328.08,
+            "Total All Payments": 3328.08
+        },
+        {
+            "Ship-to City": "BELLINGHAM",
+            "Salesperson": 312,
+            "Order Number": 11316872,
+            "Order Date": 45162,
+            "Customer Number": 128950,
+            "Customer Name": "COLLINS, MISHA",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 8346.76,
+            "Total All Payments": 8118.33
+        },
+        {
+            "Ship-to City": "FERNDALE",
+            "Salesperson": 329,
+            "Order Number": 11317412,
+            "Order Date": 45171,
+            "Customer Number": 141943,
+            "Customer Name": "LOVE, LISA",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 4221.57,
+            "Total All Payments": 4221.57
+        },
+        {
+            "Ship-to City": "FERNDALE",
+            "Salesperson": 329,
+            "Order Number": 11320648,
+            "Order Date": 45261,
+            "Customer Number": 60916,
+            "Customer Name": "BECK, ALICIA & RICK",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 3653.01,
+            "Total All Payments": 3653.01
+        },
+        {
+            "Ship-to City": "BLAINE",
+            "Salesperson": 335,
+            "Order Number": 11320960,
+            "Order Date": 45271,
+            "Customer Number": 186288,
+            "Customer Name": "TOPOR, JANUSZ",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 978.99,
+            "Total All Payments": 978.99
+        },
+        {
+            "Ship-to City": "FERNDALE",
+            "Salesperson": 301,
+            "Order Number": 11321088,
+            "Order Date": 45274,
+            "Customer Number": 46344,
+            "Customer Name": "BEACON MANOR APARTMENTS",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 602.7,
+            "Total All Payments": 0
+        },
+        {
+            "Ship-to City": "BELLINGHAM",
+            "Salesperson": 301,
+            "Order Number": 11321090,
+            "Order Date": 45274,
+            "Customer Number": 183714,
+            "Customer Name": "CHUCKANUT PM & REALTY INC.",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 1527.5,
+            "Total All Payments": 0
+        },
+        {
+            "Ship-to City": "BELLINGHAM",
+            "Salesperson": 301,
+            "Order Number": 11321092,
+            "Order Date": 45274,
+            "Customer Number": 168358,
+            "Customer Name": "SAMISH COMMONS",
+            "Shipping Date": 45278,
+            "Total Invoice Amt": 2130.14,
+            "Total All Payments": 0
         }
     ]
     
@@ -225,9 +303,23 @@ import { ServiceTime } from './service-time'
 
     export let processedlist = [];
 
-    // adding address to each line item
-    export const LineitemAdd = (lineitems, addresses, stararr, catarr) => {
-        lineitems.forEach((x) => {
+
+    export const LineitemAdd = (openorders, lineitems, addresses, stararr, catarr) => {
+        let orders = [];
+        LineItemKeyUpdate(lineitems);
+        AddressItemKeyUpdate(addresses);
+        OpenOrderKeyUpdate(openorders);
+        openorders.forEach((x) => {
+            lineitems.forEach((y) => {
+                if(x.OrderNumber === y.OrderNumber) {
+                    y.Salesperson = x.Salesperson
+                    y.ShippingDate = x.ShippingDate
+                    orders.push(y);
+
+                }
+            })
+        })
+        orders.forEach((x) => {
             addresses.forEach((y) => {
                 if(x.OrderNumber === y.OrderNumber) {
                     x.ShiptoAddress1 = y.ShiptoAddress1;
@@ -238,30 +330,15 @@ import { ServiceTime } from './service-time'
                 }
             })
         })
-        console.log(lineitems);
-        ServiceTime(lineitems, stararr, catarr);
-        processedlist = lineitems
-        console.log("processed list is:")
-        console.table(processedlist);
+        ServiceTime(orders, stararr, catarr);
+        console.log(orders);
+        // processedlist = lineitems
+        // console.log("processed list is:")
+        // console.table(processedlist);
     }
 
     // LineitemAdd(SampleLineItems, SampleAddresses);
 
     //Sift through open order sheet and line item sheet for only order sheet orders
 
-
-    export const Orders = (openorders, lineitems) => {
-
-        let orders =[];
-        openorders.forEach((x) => {
-            lineitems.forEach((y) => {
-                if(x.OrderNumber === y.OrderNumber) {
-                    orders.push(x);
-                }
-            })
-        })
-        console.log(orders);
-    }
-
-    // Orders(SampleOpenOrder, SampleLineItems);
 
