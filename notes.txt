@@ -1,6 +1,7 @@
 Next steps:
 
-create a download link for converted object to excel -DONE (looks to be done)
+--TEST--
+create a download link for converted object to excel -DONE (looks to be done) - 
     (original attempt was missing non-serialized items. don't know why still)
 
 extra: deleting 'star' items
@@ -8,18 +9,19 @@ extra: creating drag and drop locations for files on web page
 
 *is there a way to format object to insert key (excel column) in between others. To format for DT upload*
 
-in excel:
-    format columns
-    delete star items
+--------------------------------------
+FORMATTING WEBPAGE LAYOUT
 
-Set up another page for the converter function
-add header and footer ( use example from bootcamp class)
+<li> map over processed file
+
+--TEST--
+need to test with uploading files and the processed file
 
 -----------------------------------
 
 Next big chunck : COMPARING AND UPDATING CHANGES TO THE LIST
 
-making an area of shop items order numbers
+create test file for difference in original report and new report
 
 make an '<li>' list of excel file on web page
 
@@ -32,6 +34,7 @@ extra:
         discard unneeded objects/lines
         add object/line additions
         update changes like modelnumber and location
+    making an area of shop items order numbers
     
 
     
