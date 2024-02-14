@@ -1,42 +1,40 @@
 Next steps:
 
---TEST--
-create a download link for converted object to excel -DONE (looks to be done) - 
-    (original attempt was missing non-serialized items. don't know why still)
 
-extra: deleting 'star' items
-extra: creating drag and drop locations for files on web page
-
-*is there a way to format object to insert key (excel column) in between others. To format for DT upload*
-
---------------------------------------
-FORMATTING WEBPAGE LAYOUT
-
-<li> map over processed file
-
---TEST--
-need to test with uploading files and the processed file
-
------------------------------------
-
-Next big chunck : COMPARING AND UPDATING CHANGES TO THE LIST
-
-create test file for difference in original report and new report
-
-make an '<li>' list of excel file on web page
-
-loop checking for changes in all key value pairs. 
-    -create new array of new objects/lines and differences in key/values ie. model updates, location updates
-    -if ordernumber doesn't exist immediately add to existing list
 
 extra: 
+    giving prompts for the updates on existing orders
     add interaction to:
         discard unneeded objects/lines
         add object/line additions
         update changes like modelnumber and location
     making an area of shop items order numbers
+    formatting webpage layout
+    extra: deleting 'star' items
+    extra: creating drag and drop locations for files on web page
+    *is there a way to format object to insert key (excel column) in between others. To format for DT upload*
+
+------------------------------------
+
+ISSUES:
+    Washer not getting a service time...
+
+
+brainstorm:
+
+OG WAY: running picks takes what hasn't been flagged as a pick. then we add it to the existing file
+
+-- DON'T ITERATE -- ONLY RUN THE MORNING BEFORE
+
+NEW WAY: take all of the orders each iteration. how to compare what has not changed and have what has changed remain?
+
+right now it takes same order numbers and displays them for review. making it difficult getting to 40 plus orders
+
+loop through batches of orders comparing model, address, notes
     
+original list, if new list has same order number
 
     
 // taglist header names
 // OrderNumber	CustomerNumber	CustomerName	Salesperson	StockShipped	Description1	ShippingDate	QuantityToShip	LocationNumber	Row	Tagging	Oldest	Quantity
+

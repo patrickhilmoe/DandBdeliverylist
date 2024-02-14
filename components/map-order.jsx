@@ -37,8 +37,13 @@ export function MapOrder(props) {
       </table>
     );
     return (
-      <div>
-          {listItems}
-      </div>
+        <>
+        <div>
+            {listItems}
+        </div>
+        <div>
+            <p>using effect react {props.here}</p>
+        </div>
+        </>
     );
   }
