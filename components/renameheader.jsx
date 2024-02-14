@@ -20,6 +20,22 @@ export const LineItemKeyUpdate = (array) => {
         delete item['Unit Price'];
         delete item['MATCH ORDER'];
         delete item['E tended Price'];
+        delete item['~'];
+        delete item['~_1'];
+        delete item['~_2'];
+        delete item['<A'];
+        delete item['HREF="http://@VAR_FORM_ACTION_'];
+        delete item['URL_@?SESSION_NO=@VAR_SESSION_'];
+        delete item['NO_@&ORDNO='];
+        delete item['&LINE_NO='];
+        delete item['&CUST_NO='];
+        delete item['&CUST_NAME='];
+        delete item['&REQUEST_ID=CORDDETLIN">'];
+        delete item['</A>'];
+        delete item['`'];
+        delete item['`_1'];
+        delete item['`_2'];
+        delete item['`_3'];
         return item;
         })
   };
