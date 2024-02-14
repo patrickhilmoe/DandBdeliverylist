@@ -305,6 +305,7 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
 
 
     export const LineitemAdd = (openorders, lineitems, addresses, stararr, catarr) => {
+        console.log("lineitems", lineitems)
         let orders = [];
         LineItemKeyUpdate(lineitems);
         AddressItemKeyUpdate(addresses);
@@ -332,9 +333,11 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
         })
         ServiceTime(orders, stararr, catarr);
         console.log(orders);
-        // processedlist = lineitems
+        console.log("modded lineitems", lineitems);
+        processedlist = orders
         // console.log("processed list is:")
         // console.table(processedlist);
+        return processedlist
     }
 
     // LineitemAdd(SampleLineItems, SampleAddresses);
