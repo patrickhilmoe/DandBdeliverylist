@@ -38,3 +38,4 @@ original list, if new list has same order number
 // taglist header names
 // OrderNumber	CustomerNumber	CustomerName	Salesperson	StockShipped	Description1	ShippingDate	QuantityToShip	LocationNumber	Row	Tagging	Oldest	Quantity
 
+headers in line items to delete ~	<A	HREF="http://@VAR_FORM_ACTION_	URL_@?SESSION_NO=@VAR_SESSION_	NO_@&ORDNO=	&LINE_NO=	&CUST_NO=	&CUST_NAME=	&REQUEST_ID=CORDDETLIN">	</A>	~_1	~_2	`	~_3	`_1	`_2
