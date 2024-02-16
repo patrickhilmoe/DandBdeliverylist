@@ -7,6 +7,7 @@ import { stockWithCat } from '../components/object-arrays/stockwithcat'
 import { starNum } from '../components/object-arrays/starArr'
 import { processedlist, LineitemAdd, pickAdds } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
+import { PicksTest } from '../components/object-arrays/picks-2-19'
 // import { AddressesTest } from '../components/object-arrays/addresses'
 // import { LineItemsTest } from '../components/object-arrays/line-items'
 // import { OpenOrderReportTest } from '../components/object-arrays/open-order-report'
@@ -15,6 +16,7 @@ import { ServiceTime, SampleList, SampleListChange } from '../components/service
 import { MapOrder } from '../components/map-order'
 import { CheckUpdates, updatedlist, potentiallineupdate } from '../components/check-updates'
 import { newlisttest, oldlisttest } from '../components/adding-old-new'
+import { PicksKeyUpdate } from '../components/renameheader'
 
 function App() {
   const [CatStock, setCatStock] = useState([]);
@@ -190,6 +192,10 @@ function App() {
     pickAdds(Picks, processedlist)
   }
 
+  function runpickheader() {
+    PicksKeyUpdate(Picks);
+  }
+
   // --- DON'T NEED TO COMINE UPDATES IF RUNNING ONCE, THE MORNING BEFORE
 
   // function to test combining updates
@@ -273,6 +279,7 @@ function App() {
      <div>
       <button onClick={listprocessorstart}>processlist</button>
       <button onClick={integratepick}>integrate info from picks</button>
+      <button onClick={runpickheader}>pickheader test</button>
      </div>
      <div>
       <div>
@@ -316,7 +323,7 @@ function App() {
         />
       </div>      
       <div>
-          <strong>Master List For Combining 2 Lists</strong>
+          <strong>Picks Report</strong>
           <input
           type="file"
           onChange={(e) => {
