@@ -5,10 +5,6 @@ pass in picks excel file
     - add phone number 
     - add notes 
 
-rename headers for picks file
-
-create test files from picks file ( or use actual files... ) 2-19-24...
-
 extra: 
     giving prompts for the updates on existing orders
     add interaction to:

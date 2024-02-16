@@ -80,8 +80,8 @@ export const PicksKeyUpdate = (array) => {
         delete item['Order Number'];
         item['CustomerNumber'] = item['Customer Number'];
         delete item['Customer Number'];
-        item['CustomerName'] = item['Ship-to Name'];
-        delete item['Ship-to Name'];
+        item['CustomerName'] = item['Customer Name'];
+        delete item['Customer Name'];
         item['StockShipped'] = item['Stock # Shipped'];
         delete item['Stock # Shipped'];
         delete item['Service Code'];

@@ -196,83 +196,10 @@ function App() {
     PicksKeyUpdate(Picks);
   }
 
-  // --- DON'T NEED TO COMINE UPDATES IF RUNNING ONCE, THE MORNING BEFORE
-
-  // function to test combining updates
-  // function CombineUpdates() {
-  //   CheckUpdates(newlisttest, oldlisttest)
-  //   console.log("remaining item list is:", updatedlist)
-  // }
-
-    // // function to test with the whole chain of processing functions
-    // function CombineUpdates() {
-    //   CheckUpdates( LineitemAdd(OpenOrderReportTest, LineItemsTest, AddressesTest, starNum, stockWithCat), oldlisttest)
-    //   console.log("remaining item list is:", updatedlist)
-    // }
-
-  // function to use with uploading files
-  // function CombineUpdates() {
-  //   CheckUpdates( LineitemAdd(OpenOrder, LineItems, Addresses, starNum, CatStock), oldlisttest)
-  //   console.log("remaining item list is:", updatedlist)
-  // }
-
   function initiateconvert() {
     // console.log(processedlist);
     convertV2(processedlist);
   }
-
-  // useEffect(() => {
-  //   document.title = {potentiallineupdate};
-  // }, [potentiallineupdate]);
-
-  // useEffect(() => {
-  //   document.title = {EffectTest}
-  // }, [])
-
-  // function testEffect() {
-  //   setEffectTest((e) => e = "there")
-  //   console.log("here equals", EffectTest)
-  // }
-
-// testing using test array objects
-
-  // const truncmaster = [
-  //   {        
-  //     "OrderNumber": 11314700
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314701
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314702
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314705
-  //   },
-
-  // ]
-
-  // const truncnew = [
-  //   {        
-  //     "OrderNumber": 11314700
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314701
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314704
-  //   },    
-  //   {        
-  //     "OrderNumber": 11314705
-  //   },
-
-  // ]
-
-  // const array1 = [1,2,3,4,5];
-  // const array2 = [2,5,5,5,6,7,7];
-
-  // CheckUpdates(array2, array1);
-  // CheckUpdates(truncnew, truncmaster);
 
   return (
     <>
