@@ -1,6 +1,13 @@
 Next steps:
 
+pass in picks excel file
+    - add location based on order. ( what about ones that don't pick through? )
+    - add phone number 
+    - add notes 
 
+rename headers for picks file
+
+create test files from picks file ( or use actual files... )
 
 extra: 
     giving prompts for the updates on existing orders
@@ -13,26 +20,19 @@ extra:
     extra: deleting 'star' items
     extra: creating drag and drop locations for files on web page
     *is there a way to format object to insert key (excel column) in between others. To format for DT upload*
+    sub in DB-SHIP to replace open order and line items file
 
 ------------------------------------
 
 ISSUES:
     Washer not getting a service time...
 
+brainstorm
 
-brainstorm:
+a process for DT upload intentially missing location, phone number, and notes
+    - this process is to a workable point. service time is not working and will need to format with excel
 
-OG WAY: running picks takes what hasn't been flagged as a pick. then we add it to the existing file
-
--- DON'T ITERATE -- ONLY RUN THE MORNING BEFORE
-
-NEW WAY: take all of the orders each iteration. how to compare what has not changed and have what has changed remain?
-
-right now it takes same order numbers and displays them for review. making it difficult getting to 40 plus orders
-
-loop through batches of orders comparing model, address, notes
-    
-original list, if new list has same order number
+a final process to combine with picks to add location, phone number, and notes
 
     
 // taglist header names

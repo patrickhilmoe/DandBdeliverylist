@@ -303,7 +303,7 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
 
     export let processedlist = [];
 
-
+    // use for quick uploads to Dispatch Track
     export const LineitemAdd = (openorders, lineitems, addresses, stararr, catarr) => {
         console.log("lineitems", lineitems)
         let orders = [];
@@ -340,7 +340,30 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
         return processedlist
     }
 
-    // LineitemAdd(SampleLineItems, SampleAddresses);
+    // add after lineitemadd to make final list
+    export const pickAdds = (picks, proclist) => {
+        proclist.forEach((proc) => {
+            proc.Location = "";
+            proc.PhoneNumber = "";
+            proc.Notes = "";
+        })
+        let ord = "";
+        let arr = [];
+        proclist.forEach((proc) => {
+            picks.forEach((pick) => {
+                if(proc.OrderNumber === pick.OrderNumber && proc.StockShipped === pick.StockShipped) {
+                    proc.Location = pick.Location;
+                    proc.PhoneNumber = pick.PhoneNumber;
+                    proc.Notes = pick.Notes;
+                }
+                // if(proc.OrderNumber === pick.OrderNumber) {
+                //     proc.PhoneNumber = pick.PhoneNumber;
+                //     proc.Notes = pick.Notes;
+                // }
+            })
+        })
+        return processedlist;
+    }
 
     //Sift through open order sheet and line item sheet for only order sheet orders
 

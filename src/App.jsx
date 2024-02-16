@@ -5,7 +5,7 @@ import ExceltoObject from '../components/object_converter'
 import * as line from '../components/add-to-line-items'
 import { stockWithCat } from '../components/object-arrays/stockwithcat'
 import { starNum } from '../components/object-arrays/starArr'
-import { processedlist, LineitemAdd } from '../components/add-to-line-items'
+import { processedlist, LineitemAdd, pickAdds } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
 // import { AddressesTest } from '../components/object-arrays/addresses'
 // import { LineItemsTest } from '../components/object-arrays/line-items'
@@ -21,8 +21,8 @@ function App() {
   const [OpenOrder, setOpenOrder] = useState([]);
   const [Addresses, setAddresses] = useState([]);
   const [LineItems, setLineItems] = useState([]);
-  const [MasterList, setMasterList] = useState([]);
   const [EffectTest, setEffectTest] = useState("");
+  const [Picks, setPicks] = useState([]);
 
   const readExcelCat = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -144,7 +144,7 @@ function App() {
 
   };
 
-  const readMasterList = (file) => {
+  const readPicks = (file) => {
     const promise = new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsArrayBuffer(file);
@@ -169,7 +169,7 @@ function App() {
     });
 
     promise.then((d) => {
-      setMasterList(d);
+      setPicks(d);
     });
 
   };
@@ -184,6 +184,10 @@ function App() {
   // function to use with uploading files
   function listprocessorstart() {
     LineitemAdd(OpenOrder, LineItems, Addresses, starNum, CatStock)
+  }
+
+  function integratepick() {
+    pickAdds(Picks, processedlist)
   }
 
   // --- DON'T NEED TO COMINE UPDATES IF RUNNING ONCE, THE MORNING BEFORE
@@ -268,6 +272,7 @@ function App() {
     <>
      <div>
       <button onClick={listprocessorstart}>processlist</button>
+      <button onClick={integratepick}>integrate info from picks</button>
      </div>
      <div>
       <div>
@@ -310,16 +315,16 @@ function App() {
           }}
         />
       </div>      
-      {/* <div>
+      <div>
           <strong>Master List For Combining 2 Lists</strong>
           <input
           type="file"
           onChange={(e) => {
             const file = e.target.files[0];
-            readMasterList(file);
+            readPicks(file);
           }}
         />
-      </div> */}
+      </div>
       <button onClick={(initiateconvert)}>convert object array</button>
       {/* <button onClick={(CombineUpdates)}>COMBINE OLD LIST AND NEW LIST</button> */}
       {/* <button onClick={(testEffect)}>test effect</button> */}
