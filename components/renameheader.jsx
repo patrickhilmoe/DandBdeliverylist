@@ -40,7 +40,6 @@ export const LineItemKeyUpdate = (array) => {
         })
   };
 
-
 export const AddressItemKeyUpdate =(array) => {
     let updatedArray = array.map(item => {
         item['OrderNumber'] = item['Order Number'];
@@ -73,6 +72,47 @@ export const OpenOrderKeyUpdate = (array) => {
         item['ShippingDate'] = item['Shipping Date'];
         delete item['Shipping Date'];
     })
+}
+
+export const PicksKeyUpdate = (array) => {
+    let updatedArray = array.map(item => {
+        item['OrderNumber'] = item['Order Number'];
+        delete item['Order Number'];
+        item['CustomerNumber'] = item['Customer Number'];
+        delete item['Customer Number'];
+        item['CustomerName'] = item['Ship-to Name'];
+        delete item['Ship-to Name'];
+        item['StockShipped'] = item['Stock # Shipped'];
+        delete item['Stock # Shipped'];
+        delete item['Service Code'];
+        item['Description1'] = item['Description 1'];
+        delete item['Description 1'];
+        item['QuantitytoShip'] = item['Quantity Ordered'];
+        delete item['Quantity Ordered'];
+        item['Location'] = item['Location Number'];
+        delete item['Location Number'];
+        item['PhoneNumber'] = item['Phone Number'];
+        delete item['Phone Number'];
+        item['EMailAddress'] = item['EMail Address'];
+        delete item['EMail Address'];
+        item['ShiptoName'] = item['Ship-to Name'];
+        delete item['Ship-to Name'];
+        item['ShiptoAddress1'] = item['Ship-to Address 1'];
+        delete item['Ship-to Address 1'];
+        item['ShiptoAddress2'] = item['Ship-to Address 2'];
+        delete item['Ship-to Address 2'];
+        item['ShiptoAddress3'] = item['Ship-to Address 3'];
+        delete item['Ship-to Address 3'];
+        item['ShiptoCity'] = item['Ship-to City'];
+        delete item['Ship-to City'];
+        item['ShiptoState'] = item['Ship-to State'];
+        delete item['Ship-to State'];
+        item['ShiptoZipCode'] = item['Ship-to Zip Code'];
+        delete item['Ship-to Zip Code'];
+        item['HeaderTextExpanded'] = item['HeaderTextExpanded'];
+        delete item['HeaderTextExpanded'];
+    })
+    console.log("picks updated headers:", array)
 }
 
 
