@@ -1,5 +1,5 @@
 import { ServiceTime } from './service-time'
-import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './renameheader'
+import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpdate, PicksKeyUpdate} from './renameheader'
 
     export const SampleOpenOrder =    [
         {
@@ -304,19 +304,19 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
     export let processedlist = [];
 
     // use for quick uploads to Dispatch Track
-    export const LineitemAdd = (openorders, lineitems, addresses, stararr, catarr) => {
-        console.log("lineitems", lineitems)
+    export const LineitemAdd = (lineitems, openorders, addresses, stararr, catarr) => {
+        // console.log("lineitems", lineitems)
         let orders = [];
         LineItemKeyUpdate(lineitems);
         AddressItemKeyUpdate(addresses);
         OpenOrderKeyUpdate(openorders);
+        StockKeyUpdate(catarr);
         openorders.forEach((x) => {
             lineitems.forEach((y) => {
                 if(x.OrderNumber === y.OrderNumber) {
                     y.Salesperson = x.Salesperson
                     y.ShippingDate = x.ShippingDate
                     orders.push(y);
-
                 }
             })
         })
@@ -332,8 +332,6 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
             })
         })
         ServiceTime(orders, stararr, catarr);
-        console.log(orders);
-        console.log("modded lineitems", lineitems);
         processedlist = orders
         // console.log("processed list is:")
         // console.table(processedlist);
@@ -341,7 +339,8 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
     }
 
     // add after lineitemadd to make final list
-    export const pickAdds = (picks, proclist) => {
+    export const pickAdds = (proclist, picks) => {
+        PicksKeyUpdate(picks);
         proclist.forEach((proc) => {
             proc.Location = "";
             proc.PhoneNumber = "";
@@ -354,14 +353,12 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate} from './ren
                 if(proc.OrderNumber === pick.OrderNumber && proc.StockShipped === pick.StockShipped) {
                     proc.Location = pick.Location;
                     proc.PhoneNumber = pick.PhoneNumber;
-                    proc.Notes = pick.Notes;
+                    proc.Notes = pick.HeaderTextExpanded;
+                    console.log(pick.PhoneNumber);
                 }
-                // if(proc.OrderNumber === pick.OrderNumber) {
-                //     proc.PhoneNumber = pick.PhoneNumber;
-                //     proc.Notes = pick.Notes;
-                // }
             })
         })
+
         return processedlist;
     }
 

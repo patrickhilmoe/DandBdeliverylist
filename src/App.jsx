@@ -3,11 +3,11 @@ import './App.css'
 import * as XLSX from 'xlsx'
 import ExceltoObject from '../components/object_converter'
 import * as line from '../components/add-to-line-items'
-import { stockWithCat } from '../components/object-arrays/stockwithcat'
 import { starNum } from '../components/object-arrays/starArr'
 import { processedlist, LineitemAdd, pickAdds } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
 import { PicksTest } from '../components/object-arrays/picks-2-19'
+// import { stockWithCat } from '../components/object-arrays/stockwithcat'
 // import { AddressesTest } from '../components/object-arrays/addresses'
 // import { LineItemsTest } from '../components/object-arrays/line-items'
 // import { OpenOrderReportTest } from '../components/object-arrays/open-order-report'
@@ -185,11 +185,11 @@ function App() {
 
   // function to use with uploading files
   function listprocessorstart() {
-    LineitemAdd(OpenOrder, LineItems, Addresses, starNum, CatStock)
+    LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock)
   }
 
   function integratepick() {
-    pickAdds(Picks, processedlist)
+    pickAdds(LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock), Picks)
   }
 
   function runpickheader() {
@@ -204,21 +204,17 @@ function App() {
   return (
     <>
      <div>
-      <button onClick={listprocessorstart}>processlist</button>
-      <button onClick={integratepick}>integrate info from picks</button>
-      <button onClick={runpickheader}>pickheader test</button>
-     </div>
-     <div>
+      <h3>Upload These for Route Ahead</h3>
       <div>
-          <strong>Stock with Category</strong>
+          <strong>Lineitems Report</strong>
           <input
           type="file"
           onChange={(e) => {
             const file = e.target.files[0];
-            readExcelCat(file);
+            readExcelLineItems(file);
           }}
         />
-      </div>
+      </div>      
       <div>
           <strong>Open Order Report</strong>
           <input
@@ -240,15 +236,16 @@ function App() {
         />
       </div>
       <div>
-          <strong>Lineitems Report</strong>
+          <strong>Stock with Category</strong>
           <input
           type="file"
           onChange={(e) => {
             const file = e.target.files[0];
-            readExcelLineItems(file);
+            readExcelCat(file);
           }}
         />
-      </div>      
+      </div>
+      <h3>Upload this to Add Picks</h3>
       <div>
           <strong>Picks Report</strong>
           <input
@@ -259,17 +256,26 @@ function App() {
           }}
         />
       </div>
-      <button onClick={(initiateconvert)}>convert object array</button>
+      <br></br>
+      <br></br>
+     <div>
+      <button onClick={listprocessorstart}>Route Ahead Processor</button>
+      <button onClick={integratepick}>Picks Processor</button>
+      {/* <button onClick={runpickheader}>pickheader test</button> */}
+     </div>
+     <br></br>
+     <br></br>
+      <button onClick={(initiateconvert)}>Click Me to Download!</button>
       {/* <button onClick={(CombineUpdates)}>COMBINE OLD LIST AND NEW LIST</button> */}
       {/* <button onClick={(testEffect)}>test effect</button> */}
      </div>
      
-     <div>
+     {/* <div>
       <ExceltoObject/>
      </div>
      <div>
       <MapOrder SampleList={potentiallineupdate} here={EffectTest}/>
-     </div>
+     </div> */}
     </>
   )
 }

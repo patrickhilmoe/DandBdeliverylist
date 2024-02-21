@@ -9,15 +9,12 @@ export const ServiceTime = (listarr, stararr, catarr) => {
         x.Category = ""
         x.ServiceTime = ""
     })
-    console.log('cleared service and category')
-    console.table(listarr)
     const lastobject = [{ OrderNumber: "last order"}]
     listarr.push(...lastobject)
-    // console.table(listarr)
   listarr.forEach((x) => {
     //adding product category to main list
     catarr.forEach((cat) => {
-      if (x.StockShipped === cat.Model) {
+      if (x.StockShipped === cat.StockShipped) {
         x.Category = cat.ProductCategory;
         // console.log(`model is ${x.StockShipped} and category is ${x.Category}`)
       }
@@ -67,30 +64,35 @@ export const ServiceTime = (listarr, stararr, catarr) => {
                     if (ar2.Category === "REF" && !ar2.ServiceTime) {
                         ar2.ServiceTime = 60
                     }
+                    if (ar2.Category === "BLM" && !ar2.ServiceTime) {
+                        ar2.ServiceTime = 60
+                    }
                 }
                 if (startemp === "*HOOKUPREFRIG2") {
                     if (ar2.Category === "REF" && !ar2.ServiceTime) {
                         ar2.ServiceTime = 60
                     }
+                    if (ar2.Category === "BLM" && !ar2.ServiceTime) {
+                        ar2.ServiceTime = 60
+                    }
                 }
-                if (startemp === "HOSE-REGULAR") {
+                if (startemp === "*HOSE-REGULAR") {
                     if (ar2.Category === "WAS" && !ar2.ServiceTime) {
                         ar2.ServiceTime = 30
                     }
                 }
-                if (startemp === "HOSE-STAINLESS") {
+                if (startemp === "*HOSE-STAINLESS") {
                     if (ar2.Category === "WAS" && !ar2.ServiceTime) {
                         ar2.ServiceTime = 30
                     }
                 }
-
             });
           }
         });
         // console.log(ar.Salesperson)
         // if ralph order add service time
-        if (ar.Salesperson === 301) {
-            console.log(`adding service time for saleman number ${ar.Salesperson}`)
+        if (ar.Salesperson === '301') {
+            // console.log(`adding service time for saleman number ${ar.Salesperson}`)
             if (ar.Category === "WAS" && !ar.ServiceTime) {
                 ar.ServiceTime = 30
             }
@@ -109,9 +111,9 @@ export const ServiceTime = (listarr, stararr, catarr) => {
         }
       });
 
-    //   console.log(arr);
+    //   console.table("temp order:", arr);
       arr2.push(arr);
-      // console.log(arr2);
+    //   console.table("aggrigate order:", arr2);
       bigarray = bigarr.concat(arr2);
 
       ord = x.OrderNumber;
