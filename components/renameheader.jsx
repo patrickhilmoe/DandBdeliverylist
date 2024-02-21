@@ -23,6 +23,7 @@ export const LineItemKeyUpdate = (array) => {
         delete item['~'];
         delete item['~_1'];
         delete item['~_2'];
+        delete item['~_3'];
         delete item['<A'];
         delete item['HREF="http://@VAR_FORM_ACTION_'];
         delete item['URL_@?SESSION_NO=@VAR_SESSION_'];
@@ -35,7 +36,24 @@ export const LineItemKeyUpdate = (array) => {
         delete item['`'];
         delete item['`_1'];
         delete item['`_2'];
-        delete item['`_3'];
+        return item;
+        })
+  };
+
+  export const LineItemDateKeyUpdate = (array) => {
+    let updatedArray = array.map(item => {
+        item['OrderNumber'] = item['Order Number'];
+        delete item['Order Number'];
+        item['CustomerNumber'] = item['Customer# (from hdr)'];
+        delete item['Customer# (from hdr)'];
+        item['CustomerName'] = item['Customer Name'];
+        delete item['Customer Name'];
+        item['ShippingDate'] = item['Shipping Date'];
+        delete item['Shipping Date'];
+        item['StockShipped'] = item['Stock # Ordered'];
+        delete item['Stock # Ordered'];
+        item['QuantitytoShip'] = item['Quantity To Ship'];
+        delete item['Quantity To Ship'];
         return item;
         })
   };
@@ -44,8 +62,8 @@ export const AddressItemKeyUpdate =(array) => {
     let updatedArray = array.map(item => {
         item['OrderNumber'] = item['Order Number'];
         delete item['Order Number'];
-        item['CustomerName'] = item['Ship-to Name'];
-        delete item['Ship-to Name'];
+        item['CustomerName'] = item['Customer Name'];
+        delete item['Customer Name'];
         item['ShiptoAddress1'] = item['Ship-to Address 1'];
         delete item['Ship-to Address 1'];
         item['ShiptoAddress2'] = item['Ship-to Address 2'];
@@ -69,8 +87,37 @@ export const OpenOrderKeyUpdate = (array) => {
         delete item['Customer Number'];
         item['ShiptoCity'] = item['Ship-to City'];
         delete item['Ship-to City'];
-        item['ShippingDate'] = item['Shipping Date'];
-        delete item['Shipping Date'];
+        item['ShippingDate'] = item['Order Date'];
+        delete item['Order Date'];
+        delete item['Total Invoice Amt'];
+        delete item['Total All Payments'];
+    })
+}
+
+export const StockKeyUpdate = (array) => {
+    let updatedArray = array.map(item => {
+        item['StockShipped'] = item['Model #'];
+        delete item['Model #'];
+        item['Location'] = item['Loc'];
+        delete item['Loc'];
+        item['StockDescription1'] = item['Stock Description 1'];
+        delete item['Stock Description 1'];
+        item['QtyOnHand'] = item['Qty On Hand'];
+        delete item['Qty On Hand'];
+        item['QtyCom'] = item['Qty Com'];
+        delete item['Qty Com'];
+        item['Qty Avail'] = item['Qty Avail'];
+        delete item['Qty Avail'];
+        item['AvgCost'] = item['Avg Cost'];
+        delete item['Avg Cost'];
+        item['YTDSold'] = item['YTD Sold'];
+        delete item['YTD Sold'];
+        item['DateLastReceived'] = item['Date Last Received'];
+        delete item['Date Last Received'];
+        item['ProductCategory'] = item['Product Category'];
+        delete item['Product Category'];
+        item['QtyOnRequisition'] = item['Qty On Requisition'];
+        delete item['Qty On Requisition'];
     })
 }
 
@@ -109,10 +156,9 @@ export const PicksKeyUpdate = (array) => {
         delete item['Ship-to State'];
         item['ShiptoZipCode'] = item['Ship-to Zip Code'];
         delete item['Ship-to Zip Code'];
-        item['HeaderTextExpanded'] = item['HeaderTextExpanded'];
-        delete item['HeaderTextExpanded'];
+        item['HeaderTextExpanded'] = item['Header Text Expanded'];
+        delete item['Header Text Expanded'];
     })
-    console.log("picks updated headers:", array)
 }
 
 
