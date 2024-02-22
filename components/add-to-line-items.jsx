@@ -333,8 +333,8 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpd
         })
         ServiceTime(orders, stararr, catarr);
         processedlist = orders
-        // console.log("processed list is:")
-        // console.table(processedlist);
+        console.log("processed list is:")
+        console.table(processedlist);
         return processedlist
     }
 
@@ -354,7 +354,6 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpd
                     proc.Location = pick.Location;
                     proc.PhoneNumber = pick.PhoneNumber;
                     proc.Notes = pick.HeaderTextExpanded;
-                    console.log(pick.PhoneNumber);
                 }
             })
         })

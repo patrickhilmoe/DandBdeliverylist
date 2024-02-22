@@ -186,10 +186,12 @@ function App() {
   // function to use with uploading files
   function listprocessorstart() {
     LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock)
+    alert("Route Ahead Report Finished!")
   }
 
   function integratepick() {
     pickAdds(LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock), Picks)
+    alert("Picks Report Finished!")
   }
 
   function runpickheader() {

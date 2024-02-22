@@ -6,8 +6,8 @@ export const ServiceTime = (listarr, stararr, catarr) => {
     let bigarray = [];
     // clear category and service time
     listarr.forEach((x) => {
-        x.Category = ""
         x.ServiceTime = ""
+        x.Category = ""
     })
     const lastobject = [{ OrderNumber: "last order"}]
     listarr.push(...lastobject)
