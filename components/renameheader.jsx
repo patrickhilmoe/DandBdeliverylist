@@ -87,8 +87,8 @@ export const OpenOrderKeyUpdate = (array) => {
         delete item['Customer Number'];
         item['ShiptoCity'] = item['Ship-to City'];
         delete item['Ship-to City'];
-        item['ShippingDate'] = item['Order Date'];
-        delete item['Order Date'];
+        item['ShippingDate'] = item['Shipping Date'];
+        delete item['Shipping Date'];
         delete item['Total Invoice Amt'];
         delete item['Total All Payments'];
     })
