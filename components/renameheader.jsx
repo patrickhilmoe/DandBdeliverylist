@@ -54,6 +54,8 @@ export const LineItemKeyUpdate = (array) => {
         delete item['Stock # Ordered'];
         item['QuantitytoShip'] = item['Quantity To Ship'];
         delete item['Quantity To Ship'];
+        delete item['Order Date'];
+        delete item['Service Code'];
         return item;
         })
   };

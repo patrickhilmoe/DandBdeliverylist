@@ -109,7 +109,43 @@ export const ServiceTime = (listarr, stararr, catarr) => {
                 ar.ServiceTime = 45
             }
         }
-      });
+    });
+
+    // add put all hookups into an array and create new object to have it
+    // let hookup = [];
+    // let temp = {};
+    // arr.forEach((ord) => {
+    //     if (
+    //         ord.StockShipped === "*CORD" || 
+    //         ord.StockShipped === "*DRYERKIT" || 
+    //         ord.StockShipped === "*GASHOOKUP" || 
+    //         ord.StockShipped === "*HOOKUPREFRIG1" ||
+    //         ord.StockShipped === "*HOOKUPREFRIG2" ||
+    //         ord.StockShipped === "*HOSE-REGULAR" ||
+    //         ord.StockShipped === "*HOSE-STAINLESS"
+    //         ) {
+    //             hookup.push(ord.StockShipped);
+    //             hookup.push(ord.QuantitytoShip)
+    //         }
+    //     })
+    //     temp =     {
+    //         "OrderNumber": ord.Ordernumber,
+    //         "CustomerNumber": ord.CustomerNumber,
+    //         "CustomerName": ord.CustomerName,
+    //         "StockShipped": "Charges",
+    //         "Description1": hookup,
+    //         "QuantitytoShip": 1,
+    //         "Salesperson": ord.Salesperson,
+    //         "ShippingDate": ord.ShippingDate,
+    //         "ShiptoAddress1": ord.ShiptoAddress1,
+    //         "ShiptoAddress2": ord.ShiptoAddress2,
+    //         "ShiptoCity": ord.ShiptoCity,
+    //         "ShiptoState": ord.ShiptoState,
+    //         "ShiptoZipCode": ord.ShiptoZipCode,
+    //         "ServiceTime": ord.ServiceTime
+    //     }
+    //     arr.push(temp)
+        // adding hook up in description ends here
 
     //   console.table("temp order:", arr);
       arr2.push(arr);
@@ -136,6 +172,70 @@ listarr.pop()
 //       {number}
 //   </li>
 }
+
+
+    // insert this funtion into area isolating order by order number
+    export const ConcatCharge = (list) => {
+        let arr = [];   
+        let order = "";
+        let concathookup = [];
+        const lastobject = [{ OrderNumber: "last order"}]
+        list.push(...lastobject)
+        list.forEach((l) => {
+            if (order == l.OrderNumber || order == "") {
+                order = l.OrderNumber;
+                return arr.push(l);
+            } else {
+                let hookup = [];
+                let temp = {};
+                arr.forEach((ord) => {
+                    if (
+                        ord.StockShipped === "*CORD" || 
+                        ord.StockShipped === "*DRYERKIT" || 
+                        ord.StockShipped === "*GASHOOKUP" || 
+                        ord.StockShipped === "*HOOKUPREFRIG1" ||
+                        ord.StockShipped === "*HOOKUPREFRIG2" ||
+                        ord.StockShipped === "*HOSE-REGULAR" ||
+                        ord.StockShipped === "*HOSE-STAINLESS" ||
+                        ord.StockShipped === "*DISPOSAL"
+                        ) {
+                            hookup.push(ord.StockShipped);
+                            hookup.push(ord.QuantitytoShip)
+                            console.log(ord.StockShipped);
+                        }
+                        temp.OrderNumber = ord.OrderNumber
+                        temp.CustomerNumber = ord.CustomerNumber
+                        temp.CustomerName = ord.CustomerName
+                        temp.Salesperson = ord.Salesperson
+                        temp.ShippingDate = ord.ShippingDate
+                        temp.PhoneNumber = ord.PhoneNumber
+                        temp.EmailAddress = ord.EmailAddress
+                        temp.ShiptoName = ord.ShiptoName
+                        temp.ShiptoAddress1 = ord.ShiptoAddress1
+                        temp.ShiptoAddress2 = ord.ShiptoAddress2
+                        temp.ShiptoCity = ord.ShiptoCity
+                        temp.ShiptoState = ord.ShiptoState
+                        temp.ShiptoZipCode = ord.ShiptoZipCode
+                        temp.HeaderTextExpanded = ord.HeaderTextExpanded
+                    })
+                    console.log("Hookups are",hookup);
+                    temp.StockShipped = "Charges";
+                    temp.Description1 = hookup.toString();
+                    temp.QuantitytoShip = 1;
+                    // console.log("adding hookup desc", temp)
+                    if (hookup[0]) {
+                        // arr.push(temp)
+                        concathookup.push(temp);
+                    }
+                    // build new processed list here?
+              }
+              order = l.OrderNumber;
+              arr = [];
+        })
+        list.pop();
+        list.push(...concathookup);
+        // test to see if this method works - 3/10
+    }
 
 export const SampleList = [
     {
@@ -193,7 +293,8 @@ export const SampleList = [
         "CustomerName": "COLLINS, MISHA",
         "StockShipped": "LSIS6338F",
         "Description1": "LG Studio 30\" Slide-In",
-        "QuantitytoShip": 1,
+        "QuantitytoShip": 5,
+        "Location" : "001",
         "Salesperson": 312,
         "ShippingDate": 45278,
         "ShiptoAddress1": "1425 AUSTIN ST",
@@ -226,6 +327,7 @@ export const SampleList = [
         "StockShipped": "HBC143ESS",
         "Description1": "Best 43\" Ceiling Mounted Range",
         "QuantitytoShip": 1,
+        "Location": 500,
         "Salesperson": 312,
         "ShippingDate": 45278,
         "ShiptoAddress1": "1425 AUSTIN ST",
@@ -859,7 +961,7 @@ export const SampleListChange = [
         "CustomerName": "CASSELLA, EJ",
         "StockShipped": "B36CD50SNS",
         "Description1": "Bosch 500 Series 36\" Free",
-        "QuantitytoShip": 1,
+        "QuantitytoShip": 2,
         "Salesperson": 304,
         "ShippingDate": 45278,
         "ShiptoAddress1": "1012 E TOLEDO ST",
@@ -892,7 +994,8 @@ export const SampleListChange = [
         "CustomerName": "COLLINS, MISHA",
         "StockShipped": "LSIS6338F",
         "Description1": "LG Studio 30\" Slide-In",
-        "QuantitytoShip": 1,
+        "QuantitytoShip": 7,
+        "Location": 500,
         "Salesperson": 312,
         "ShippingDate": 45278,
         "ShiptoAddress1": "1425 AUSTIN ST",
@@ -925,6 +1028,7 @@ export const SampleListChange = [
         "StockShipped": "HBC143ESS",
         "Description1": "Best 43\" Ceiling Mounted Range",
         "QuantitytoShip": 1,
+        "Location": "001",
         "Salesperson": 312,
         "ShippingDate": 45278,
         "ShiptoAddress1": "1425 AUSTIN ST",
@@ -1134,7 +1238,7 @@ export const SampleListChange = [
         "CustomerName": "LOVE, LISA",
         "StockShipped": "FGBC5334VS",
         "Description1": "Frigidaire 5.3 cu ft Built In",
-        "QuantitytoShip": 1,
+        "QuantitytoShip": 3,
         "Salesperson": 329,
         "ShippingDate": 45278,
         "ShiptoAddress1": "5626 ELM COURT",

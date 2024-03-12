@@ -1,10 +1,20 @@
 Next steps:
 
-daily compare full list of picker processor report to sus out potential problems
+get the pick checker in working order
+    - catching non picking orders
+    -
 
-how to make "paperwork" come out of DT for a physical copy for delivery guys - "manifest" under "reports"
+rename csv download file name
 
-Ask Amy in Reciving her opinion on how to make the transition easier on her end
+get more information on how the csv download works
+    - it skips columns if they are missing values
+    - if there are ", it combines the contents with the next cell
+
+html/css layout task:
+
+change buttons
+spacing between buttons
+hyperlink to other processor app
 
 extra: 
     making an area of shop items order numbers
@@ -14,7 +24,12 @@ extra:
     *is there a way to format object to insert key (excel column) in between others. To format for DT upload*
     sub in DB-SHIP to replace open order and line items file -- missing description... - but stock with cat does have a description!
 
-how to auto route on DT?
+
+put the test files in object arrays folder to store on work computer
+
+
+service time:
+    stack laundry has 'cat' of washer and gets 30 mins...
 ------------------------------------
 
 potential issues:
@@ -32,9 +47,45 @@ What does paperwork provide right now?
         - pass orders through a double checker the morning of deliveries?
             solution - keep paperwork to check off trucks
 
-------------------------------------
+--------------------------------------
+
+brainstorm for system with double checking with picks
+
+loop inside service function
+    changes to model number, location, or quantity.
+loop anywhere?
+    changes to notes or address.
+
+keep old list, add to it with new order numbers
+
+map with <li> to show changes
+    give a button to press to update on the sheet
+
+
+
+how to know if an order has been pulled off?
+
+------------------------------------------
+
+brainstorm for adding line item report to picks
+
+if any remainder lines, then add to the order
+    -this seems tricky
+    -if partial order is there, add other lines and match contents ( to keep from having gaps )
+
+if order is not in list add whole order to the list **check-updates file
+    - make a prompt before adding it?
+
+handle changes manually? - yes, for now... >:D
+
+
+adding another place to upload existing list to combine and compare
+
     
 // taglist header names
 // OrderNumber	CustomerNumber	CustomerName	Salesperson	StockShipped	Description1	ShippingDate	QuantityToShip	LocationNumber	Row	Tagging	Oldest	Quantity
 
 headers in line items to delete ~	<A	HREF="http://@VAR_FORM_ACTION_	URL_@?SESSION_NO=@VAR_SESSION_	NO_@&ORDNO=	&LINE_NO=	&CUST_NO=	&CUST_NAME=	&REQUEST_ID=CORDDETLIN">	</A>	~_1	~_2	`	~_3	`_1	`_2
+
+// tail wind 'watch'
+npx tailwindcss -i ./src/input.css -o ./src/output.css --watch

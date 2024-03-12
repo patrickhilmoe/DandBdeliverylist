@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import './App.css'
+import Button from '@mui/material/Button'
 import * as XLSX from 'xlsx'
 import ExceltoObject from '../components/object_converter'
 import * as line from '../components/add-to-line-items'
 import { starNum } from '../components/object-arrays/starArr'
-import { processedlist, LineitemAdd, pickAdds } from '../components/add-to-line-items'
+import { processedlist, LineitemAdd, pickAdds, QuickLineitemAdd } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
 import { PicksTest } from '../components/object-arrays/picks-2-19'
 // import { stockWithCat } from '../components/object-arrays/stockwithcat'
@@ -12,19 +13,20 @@ import { PicksTest } from '../components/object-arrays/picks-2-19'
 // import { LineItemsTest } from '../components/object-arrays/line-items'
 // import { OpenOrderReportTest } from '../components/object-arrays/open-order-report'
 // import { SampleOpenOrder} from '../components/add-to-line-items'
-import { ServiceTime, SampleList, SampleListChange } from '../components/service-time'
+import { ServiceTime, SampleList, SampleListChange, ConcatCharge } from '../components/service-time'
 import { MapOrder } from '../components/map-order'
 import { CheckUpdates, updatedlist, potentiallineupdate } from '../components/check-updates'
 import { newlisttest, oldlisttest } from '../components/adding-old-new'
 import { PicksKeyUpdate } from '../components/renameheader'
+import { LineItemDateTest } from '../components/object-arrays/line-item-by-date';
 
 function App() {
   const [CatStock, setCatStock] = useState([]);
   const [OpenOrder, setOpenOrder] = useState([]);
   const [Addresses, setAddresses] = useState([]);
   const [LineItems, setLineItems] = useState([]);
-  const [EffectTest, setEffectTest] = useState("");
   const [Picks, setPicks] = useState([]);
+  const [LineItemsDate, setLineItemsDate] = useState([]);
 
   const readExcelCat = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -176,6 +178,36 @@ function App() {
 
   };
 
+  const readLineItemsDate = (file) => {
+    const promise = new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+
+      fileReader.onload = (e) => {
+        const bufferArray = e.target.result;
+
+        const wb = XLSX.read(bufferArray, { type: "buffer" });
+
+        const wsname = wb.SheetNames[0];
+
+        const ws = wb.Sheets[wsname];
+
+        const data = XLSX.utils.sheet_to_json(ws);
+
+        resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+    promise.then((d) => {
+      setLineItemsDate(d);
+    });
+
+  };
+
   // line.Orders(line.SampleOpenOrder, line.SampleLineItems);
 
   // function to use for testing with local files
@@ -194,6 +226,10 @@ function App() {
     alert("Picks Report Finished!")
   }
 
+  function quicklineitem() {
+    QuickLineitemAdd(LineItemDateTest, PicksTest)
+  }
+
   function runpickheader() {
     PicksKeyUpdate(Picks);
   }
@@ -203,9 +239,19 @@ function App() {
     convertV2(processedlist);
   }
 
+  // ConcatCharge(SampleList);
+
+  // CheckUpdates(SampleListChange, SampleList)
+
+  // QuickLineitemAdd(LineItemDateTest, PicksTest);
+
+  // console.log(PicksTest);
+
   return (
     <>
-     <div>
+    <div className='container'>
+    <div className='row'>
+     <div className='col'>
       <h3>Upload These for Route Ahead</h3>
       <div>
           <strong>Lineitems Report</strong>
@@ -247,8 +293,32 @@ function App() {
           }}
         />
       </div>
-      <h3>Upload this to Add Picks</h3>
-      <div>
+          <br></br>
+          <br></br>
+     <div>
+      <Button variant="contained" onClick={listprocessorstart}>Route Ahead Processor</Button>
+
+      {/* <button onClick={runpickheader}>pickheader test</button> */}
+     </div>
+     <br></br>
+     <br></br>
+
+      {/* <button onClick={(CombineUpdates)}>COMBINE OLD LIST AND NEW LIST</button> */}
+      {/* <button onClick={(testEffect)}>test effect</button> */}
+     </div>
+     <div className='col'>
+          <h3>Pick Report</h3>
+          <div>
+          <strong>Line Item Report (DB-SHIP)</strong>
+          <input
+          type="file"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            readLineItemsDate(file);
+          }}
+         />
+         </div>
+          <div>
           <strong>Picks Report</strong>
           <input
           type="file"
@@ -260,22 +330,18 @@ function App() {
       </div>
       <br></br>
       <br></br>
-     <div>
-      <button onClick={listprocessorstart}>Route Ahead Processor</button>
-      <button onClick={integratepick}>Picks Processor</button>
-      {/* <button onClick={runpickheader}>pickheader test</button> */}
+      <Button variant="contained" onClick={quicklineitem}>Picks Processor</Button>
      </div>
-     <br></br>
-     <br></br>
-      <button onClick={(initiateconvert)}>Click Me to Download!</button>
-      {/* <button onClick={(CombineUpdates)}>COMBINE OLD LIST AND NEW LIST</button> */}
-      {/* <button onClick={(testEffect)}>test effect</button> */}
+     </div>
+     <div className="row">
+     <button onClick={(initiateconvert)}>Click Me to Download!</button>
+     </div>
      </div>
      
-     {/* <div>
+     <div>
       <ExceltoObject/>
      </div>
-     <div>
+     {/* <div>
       <MapOrder SampleList={potentiallineupdate} here={EffectTest}/>
      </div> */}
     </>

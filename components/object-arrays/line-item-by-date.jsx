@@ -6,6 +6,17 @@ export const LineItemDateTest = [
         "Order Date": 45254,
         "Customer# (from hdr)": "174608",
         "Customer Name": "TICHELMAN, ROBERT",
+        "Stock # Ordered": "LWC3063ST",
+        "Quantity To Ship": 1,
+        "____________________": "____________________"
+    },
+    {
+        "Shipping Date": 45341,
+        "Salesperson": "301",
+        "Order Number": "00113203501",
+        "Order Date": 45254,
+        "Customer# (from hdr)": "174608",
+        "Customer Name": "TICHELMAN, ROBERT",
         "Stock # Ordered": "JFC2290REM",
         "Quantity To Ship": 1,
         "____________________": "____________________"
@@ -18,17 +29,6 @@ export const LineItemDateTest = [
         "Customer# (from hdr)": "174608",
         "Customer Name": "TICHELMAN, ROBERT",
         "Stock # Ordered": "014036",
-        "Quantity To Ship": 1,
-        "____________________": "____________________"
-    },
-    {
-        "Shipping Date": 45341,
-        "Salesperson": "301",
-        "Order Number": "0011320350",
-        "Order Date": 45254,
-        "Customer# (from hdr)": "174608",
-        "Customer Name": "TICHELMAN, ROBERT",
-        "Stock # Ordered": "LWC3063ST",
         "Quantity To Ship": 1,
         "____________________": "____________________"
     },
