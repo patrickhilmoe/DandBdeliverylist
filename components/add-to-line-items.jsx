@@ -1,5 +1,5 @@
-import { ServiceTime } from './service-time'
-import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpdate, PicksKeyUpdate} from './renameheader'
+import { ServiceTime, ConcatCharge } from './service-time'
+import {LineItemKeyUpdate, LineItemDateKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpdate, PicksKeyUpdate} from './renameheader'
 
     export const SampleOpenOrder =    [
         {
@@ -360,6 +360,74 @@ import {LineItemKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpd
 
         return processedlist;
     }
+
+    export const QuickLineitemAdd = (lineitems, picks) => {
+        // console.log("lineitems", lineitems)
+        LineItemDateKeyUpdate(lineitems);
+        PicksKeyUpdate(picks);
+        // console.log(lineitems)
+        lineitems.forEach((x) => {
+            picks.forEach((y) => {
+                if(x.OrderNumber === y.OrderNumber  && x.StockShipped === y.StockShipped) {
+                    x.Description1 = y.Description1;
+                    x.Location = y.Location;
+                    x.PhoneNumber = y.PhoneNumber;
+                    x.EmailAddress = y.EmailAddress;
+                    x.ShiptoName = y.ShiptoName;
+                    x.ShiptoAddress1 = y.ShiptoAddress1;
+                    x.ShiptoAddress2 = y.ShiptoAddress2;
+                    x.ShiptoAddress3 = y.ShiptoAddress3;
+                    x.ShiptoCity = y.ShiptoCity;
+                    x.ShiptoState = y.ShiptoState;
+                    x.ShiptoZipCode = y.ShiptoZipCode;
+                    x.HeaderTextExpanded = y.HeaderTextExpanded;
+                }
+                if (x.OrderNumber === y.OrderNumber) {
+                    x.PhoneNumber = y.PhoneNumber;
+                    x.EmailAddress = y.EmailAddress;
+                    x.ShiptoName = y.ShiptoName;
+                    x.ShiptoAddress1 = y.ShiptoAddress1;
+                    x.ShiptoAddress2 = y.ShiptoAddress2;
+                    x.ShiptoAddress3 = y.ShiptoAddress3;
+                    x.ShiptoCity = y.ShiptoCity;
+                    x.ShiptoState = y.ShiptoState;
+                    x.ShiptoZipCode = y.ShiptoZipCode;
+                    x.HeaderTextExpanded = y.HeaderTextExpanded;
+                }
+            })
+        })
+        ConcatCharge(lineitems);
+        processedlist = lineitems
+        console.log("processed list is:")
+        console.table(processedlist);
+        return processedlist
+    }
+
+    // if any remainder lines, add to order and fill empty cells
+    // if order is not on list ( compare to picks and master separately?) add to list
+    export const LineItemAddPicks = (lineitems, picks, master) => {
+        // if an order is in line items but not picsk or master
+        let temp = []
+        lineitems.forEach((line) => {
+            for (let i=0; i < picks.length; i++) {
+                if (picks[i].OrderNumber === line.OrderNumber) {
+                    return
+                }
+                if (i+1 === picks.length) {
+                    return temp.push(line)
+                }
+            }
+            for (let i=0; i < master.length; i++) {
+                if (master[i].OrderNumber === line.OrderNumber) {
+                    return
+                }
+                if (i+1 === master.length) {
+                    return temp.push(line)
+                }
+            }
+        })
+    }
+
 
     //Sift through open order sheet and line item sheet for only order sheet orders
 
