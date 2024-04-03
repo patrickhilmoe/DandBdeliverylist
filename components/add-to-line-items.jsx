@@ -1,305 +1,6 @@
 import { ServiceTime, ConcatCharge } from './service-time'
 import {LineItemKeyUpdate, LineItemDateKeyUpdate, AddressItemKeyUpdate, OpenOrderKeyUpdate, StockKeyUpdate, PicksKeyUpdate} from './renameheader'
-
-    export const SampleOpenOrder =    [
-        {
-            "Ship-to City": "BELLINGHAM",
-            "Salesperson": 304,
-            "Order Number": 11314787,
-            "Order Date": 45147,
-            "Customer Number": 98941,
-            "Customer Name": "CASSELLA, EJ",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 3328.08,
-            "Total All Payments": 3328.08
-        },
-        {
-            "Ship-to City": "BELLINGHAM",
-            "Salesperson": 312,
-            "Order Number": 11316872,
-            "Order Date": 45162,
-            "Customer Number": 128950,
-            "Customer Name": "COLLINS, MISHA",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 8346.76,
-            "Total All Payments": 8118.33
-        },
-        {
-            "Ship-to City": "FERNDALE",
-            "Salesperson": 329,
-            "Order Number": 11317412,
-            "Order Date": 45171,
-            "Customer Number": 141943,
-            "Customer Name": "LOVE, LISA",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 4221.57,
-            "Total All Payments": 4221.57
-        },
-        {
-            "Ship-to City": "FERNDALE",
-            "Salesperson": 329,
-            "Order Number": 11320648,
-            "Order Date": 45261,
-            "Customer Number": 60916,
-            "Customer Name": "BECK, ALICIA & RICK",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 3653.01,
-            "Total All Payments": 3653.01
-        },
-        {
-            "Ship-to City": "BLAINE",
-            "Salesperson": 335,
-            "Order Number": 11320960,
-            "Order Date": 45271,
-            "Customer Number": 186288,
-            "Customer Name": "TOPOR, JANUSZ",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 978.99,
-            "Total All Payments": 978.99
-        },
-        {
-            "Ship-to City": "FERNDALE",
-            "Salesperson": 301,
-            "Order Number": 11321088,
-            "Order Date": 45274,
-            "Customer Number": 46344,
-            "Customer Name": "BEACON MANOR APARTMENTS",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 602.7,
-            "Total All Payments": 0
-        },
-        {
-            "Ship-to City": "BELLINGHAM",
-            "Salesperson": 301,
-            "Order Number": 11321090,
-            "Order Date": 45274,
-            "Customer Number": 183714,
-            "Customer Name": "CHUCKANUT PM & REALTY INC.",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 1527.5,
-            "Total All Payments": 0
-        },
-        {
-            "Ship-to City": "BELLINGHAM",
-            "Salesperson": 301,
-            "Order Number": 11321092,
-            "Order Date": 45274,
-            "Customer Number": 168358,
-            "Customer Name": "SAMISH COMMONS",
-            "Shipping Date": 45278,
-            "Total Invoice Amt": 2130.14,
-            "Total All Payments": 0
-        }
-    ]
-    
-    export const SampleLineItems = [
-        {
-            "OrderNumber": 11314787,
-            "LineNumber": 80,
-            "CustomerNumber": 98941,
-            "CustomerName": "CASSELLA, EJ",
-            "LineNumber_1": 80,
-            "StockShipped": "*HOOKUPREFRIG1",
-            "ServiceCode": "",
-            "Description1": "HOOKUP REFRIGERATOR",
-            "QuantityOrdered": 1,
-            "UnitOfMeasure": "EA",
-            "UnitPrice": 49.95,
-            "MATCHORDER": 11314787,
-            "EtendedPrice": 49.95
-        },
-        {
-            "OrderNumber": 11314787,
-            "LineNumber": 90,
-            "CustomerNumber": 98941,
-            "CustomerName": "CASSELLA, EJ",
-            "LineNumber_1": 90,
-            "StockShipped": "B36CD50SNS",
-            "ServiceCode": "",
-            "Description1": "Bosch 500 Series 36\" Free",
-            "QuantityOrdered": 1,
-            "UnitOfMeasure": "EA",
-            "UnitPrice": 2969,
-            "MATCHORDER": 11314787,
-            "EtendedPrice": 2969
-        },
-        {
-            "OrderNumber": 11314788,
-            "LineNumber": 100,
-            "CustomerNumber": 98941,
-            "CustomerName": "placeholder name",
-            "LineNumber_1": 100,
-            "StockShipped": "*DELIVERY",
-            "ServiceCode": "",
-            "Description1": "DELIVERY CHARGE",
-            "QuantityOrdered": 1,
-            "UnitOfMeasure": "EA",
-            "UnitPrice": 39.95,
-            "MATCHORDER": 11314787,
-            "EtendedPrice": 39.95
-        }
-    ];
-    
-    export const SampleAddresses = [
-        {
-            "@VAR_BILLNAME=": "@VAR_BILLNAME=",
-            "Bill-to Name": "CASSELLA, EJ",
-            "@VAR_BILLADD1=": "@VAR_BILLADD1=",
-            "Bill-to Address 1": "1012 E TOLEDO ST",
-            "@VAR_BILLADD2=": "@VAR_BILLADD2=",
-            "Bill-to Address 2": "",
-            "@VAR_BILLCITY=": "@VAR_BILLCITY=",
-            "Bill-to City": "BELLINGHAM",
-            "@VAR_BILLST=": "@VAR_BILLST=",
-            "Bill-to State": "WA",
-            "@VAR_BILLZIP=": "@VAR_BILLZIP=",
-            "Bill-to Zip": "98229",
-            "@VAR_SHIPNAME=": "@VAR_SHIPNAME=",
-            "Ship-to Name": "CASSELLA, EJ",
-            "@VAR_SHIPADD1=": "@VAR_SHIPADD1=",
-            "ShiptoAddress1": "1012 E TOLEDO ST",
-            "@VAR_SHIPADD2=": "@VAR_SHIPADD2=",
-            "ShiptoAddress2": "",
-            "@VAR_SHIPCITY=": "@VAR_SHIPCITY=",
-            "ShiptoCity": "BELLINGHAM",
-            "@VAR_SHIPST=": "@VAR_SHIPST=",
-            "ShiptoState": "WA",
-            "@VAR_SHIPZIP=": "@VAR_SHIPZIP=",
-            "ShiptoZipCode": "98229",
-            "@VAR_STATUS=": "@VAR_STATUS=",
-            "Entered": "Entered",
-            "Only": "Only",
-            "Selected": "",
-            "for": "",
-            "Invoicing": "",
-            "Invoice": "",
-            "Printed": "",
-            "@VAR_ORDDT=": "@VAR_ORDDT=",
-            "Order Date": 45147,
-            "@VAR_PONO=": "@VAR_PONO=",
-            "PO Number": "REFER",
-            "(none)": "",
-            "@VAR_SHIPVIA=": "@VAR_SHIPVIA=",
-            "Ship Via Code": 100,
-            "Ship-via Description": "Store Delivery",
-            "@VAR_ORDNO=": "@VAR_ORDNO=",
-            "OrderNumber": 11314787,
-            "@VAR_PRICE=": "@VAR_PRICE=",
-            "Total Price": 3058.9,
-            "@VAR_DISC=": "@VAR_DISC=",
-            "-": "",
-            "Total Discount": 0,
-            "@VAR_TAX=": "@VAR_TAX=",
-            "Tax Amount": 269.18,
-            "@VAR_MISC1D=": "@VAR_MISC1D=",
-            "Misc Charge Code 1": "",
-            "Misc Charge Desc": "",
-            "@VAR_DISC_LIT=": "@VAR_DISC_LIT=",
-            "Trade": "",
-            "Discount": "",
-            "@VAR_MISC1=": "@VAR_MISC1=",
-            "Misc Charge Amount 1": 0,
-            "@VAR_MISC2D=": "@VAR_MISC2D=",
-            "Misc Charge Code 2": "",
-            "Misc Charge Desc_1": "",
-            "@VAR_MISC2=": "@VAR_MISC2=",
-            "Misc Charge Amount 2": 0,
-            "@VAR_MISC3=": "@VAR_MISC3=",
-            "Misc Charge Amount 3": 0,
-            "@VAR_MISC3D=": "@VAR_MISC3D=",
-            "Misc Charge Code 3": "",
-            "Misc Charge Desc_2": "",
-            "@VAR_MISC4D=": "@VAR_MISC4D=",
-            "Misc Charge Code 4": "",
-            "Misc Charge Desc_3": "",
-            "@VAR_MISC4=": "@VAR_MISC4=",
-            "Misc Charge Amount 4": 0,
-            "@VAR_DUE=": "@VAR_DUE=",
-            "Charge Amount": 0,
-            "@VAR_PAYTEMP=": "@VAR_PAYTEMP=",
-            "@VAR_PAY=": "@VAR_PAY=",
-            "Payments": 3328.08
-        },
-        {
-            "@VAR_BILLNAME=": "@VAR_BILLNAME=",
-            "Bill-to Name": "TIGER CONSTRUCTION LTD",
-            "@VAR_BILLADD1=": "@VAR_BILLADD1=",
-            "Bill-to Address 1": "PO BOX 368",
-            "@VAR_BILLADD2=": "@VAR_BILLADD2=",
-            "Bill-to Address 2": "",
-            "@VAR_BILLCITY=": "@VAR_BILLCITY=",
-            "Bill-to City": "EVERSON",
-            "@VAR_BILLST=": "@VAR_BILLST=",
-            "Bill-to State": "WA",
-            "@VAR_BILLZIP=": "@VAR_BILLZIP=",
-            "Bill-to Zip": "98247-0368",
-            "@VAR_SHIPNAME=": "@VAR_SHIPNAME=",
-            "Ship-to Name": "MT VERNON FIRE STATION",
-            "@VAR_SHIPADD1=": "@VAR_SHIPADD1=",
-            "Ship-to Address 1": "",
-            "@VAR_SHIPADD2=": "@VAR_SHIPADD2=",
-            "Ship-to Address 2": "",
-            "@VAR_SHIPCITY=": "@VAR_SHIPCITY=",
-            "Ship-to City": "MOUNT VERNON",
-            "@VAR_SHIPST=": "@VAR_SHIPST=",
-            "Ship-to State": "WA",
-            "@VAR_SHIPZIP=": "@VAR_SHIPZIP=",
-            "Ship-to Zip Code": "98277",
-            "@VAR_STATUS=": "@VAR_STATUS=",
-            "Entered": "Entered",
-            "Only": "Only",
-            "Selected": "",
-            "for": "",
-            "Invoicing": "",
-            "Invoice": "",
-            "Printed": "",
-            "@VAR_ORDDT=": "@VAR_ORDDT=",
-            "Order Date": 45092,
-            "@VAR_PONO=": "@VAR_PONO=",
-            "PO Number": "MT VERN FIRE",
-            "(none)": "",
-            "@VAR_SHIPVIA=": "@VAR_SHIPVIA=",
-            "Ship Via Code": 100,
-            "Ship-via Description": "Store Delivery",
-            "@VAR_ORDNO=": "@VAR_ORDNO=",
-            "OrderNumber": 11314792,
-            "@VAR_PRICE=": "@VAR_PRICE=",
-            "Total Price": 14162.95,
-            "@VAR_DISC=": "@VAR_DISC=",
-            "-": "",
-            "Total Discount": 0,
-            "@VAR_TAX=": "@VAR_TAX=",
-            "Tax Amount": 0,
-            "@VAR_MISC1D=": "@VAR_MISC1D=",
-            "Misc Charge Code 1": "",
-            "Misc Charge Desc": "",
-            "@VAR_DISC_LIT=": "@VAR_DISC_LIT=",
-            "Trade": "",
-            "Discount": "",
-            "@VAR_MISC1=": "@VAR_MISC1=",
-            "Misc Charge Amount 1": 0,
-            "@VAR_MISC2D=": "@VAR_MISC2D=",
-            "Misc Charge Code 2": "",
-            "Misc Charge Desc_1": "",
-            "@VAR_MISC2=": "@VAR_MISC2=",
-            "Misc Charge Amount 2": 0,
-            "@VAR_MISC3=": "@VAR_MISC3=",
-            "Misc Charge Amount 3": 0,
-            "@VAR_MISC3D=": "@VAR_MISC3D=",
-            "Misc Charge Code 3": "",
-            "Misc Charge Desc_2": "",
-            "@VAR_MISC4D=": "@VAR_MISC4D=",
-            "Misc Charge Code 4": "",
-            "Misc Charge Desc_3": "",
-            "@VAR_MISC4=": "@VAR_MISC4=",
-            "Misc Charge Amount 4": 0,
-            "@VAR_DUE=": "@VAR_DUE=",
-            "Charge Amount": 14162.95,
-            "@VAR_PAYTEMP=": "@VAR_PAYTEMP=",
-            "@VAR_PAY=": "@VAR_PAY=",
-            "Payments": 0
-        }
-    ];
+import { PaperlessFirstStop } from './object-arrays/paperless-first-stop';
 
     export let processedlist = [];
 
@@ -403,29 +104,141 @@ import {LineItemKeyUpdate, LineItemDateKeyUpdate, AddressItemKeyUpdate, OpenOrde
         return processedlist
     }
 
-    // if any remainder lines, add to order and fill empty cells
     // if order is not on list ( compare to picks and master separately?) add to list
     export const LineItemAddPicks = (lineitems, picks, master) => {
-        // if an order is in line items but not picsk or master
-        let temp = []
-        lineitems.forEach((line) => {
+        // console.log("lineitems before header change", lineitems)
+        LineItemDateKeyUpdate(lineitems);
+        PicksKeyUpdate(picks);
+        if (master) {
+            PicksKeyUpdate(master);
+        }
+        let newarray = [];
+        lineitems.forEach(line => {
+            // assign to new array object
+            let newobject = {
+                "OrderNumber": line.OrderNumber,
+                "CustomerNumber": line.CustomerNumber,
+                "CustomerName": line.CustomerName,
+                "ShippingDate": line.ShippingDate,
+                "StockShipped": line.StockShipped,
+                "QuantitytoShip": line.QuantitytoShip,
+                "______________________________": line.______________________________
+            }
+            newarray.push(newobject);
+        });
+        // if an order is in line items but not picks or master
+        let temp1 = []
+        let temp2 = []
+        let linecatch = []
+        newarray.forEach((line) => {
             for (let i=0; i < picks.length; i++) {
-                if (picks[i].OrderNumber === line.OrderNumber) {
+                if (picks[i].OrderNumber === line.OrderNumber && picks[i].StockShipped === line.StockShipped) {
+                    // console.log("returning matched",picks[i])
                     return
                 }
                 if (i+1 === picks.length) {
-                    return temp.push(line)
+                    return temp1.push(line)
                 }
             }
-            for (let i=0; i < master.length; i++) {
-                if (master[i].OrderNumber === line.OrderNumber) {
-                    return
-                }
-                if (i+1 === master.length) {
-                    return temp.push(line)
+        });
+        // console.log("temp1 is", temp1);
+
+        //populate empty cells if one line item exists already
+        temp1.forEach(temp => {
+            for(let i=0; i < picks.length; i++) {
+                if (temp.OrderNumber == picks[i].OrderNumber) {
+                    temp.Salesperson = picks[i].Salesperson;
+                    temp.PhoneNumber = picks[i].PhoneNumber;
+                    temp.ShiptoName = picks[i].ShiptoName;
+                    temp.ShiptoAddress1 = picks[i].ShiptoAddress1;
+                    temp.ShiptoAddress2 = picks[i].ShiptoAddress2;
+                    temp.ShiptoAddress3 = picks[i].ShiptoAddress3;
+                    temp.ShiptoCity = picks[i].ShiptoCity;
+                    temp.ShiptoState = picks[i].ShiptoState;
+                    temp.ShiptoZipCode = picks[i].ShiptoZipCode;
+                    temp.HeaderTextExpanded = picks[i].HeaderTextExpanded;
                 }
             }
-        })
+        });
+        // console.log("populated cells", temp1);
+
+        //use master list if available
+        if (master) {
+            newarray.forEach(line => {           
+                for (let i=0; i < master.length; i++) {
+                        if (master[i].OrderNumber === line.OrderNumber) {
+                            return
+                        }
+                        if (i+1 === master.length) {                    
+                            return temp2.push(line)
+                        }
+                    }
+            });
+
+                    temp1.forEach(temp => {
+                        // pass new picks temp array through master and master temp array   
+                        for (let i=0; i < master.length; i++) {
+                            if (master[i].OrderNumber === temp.OrderNumber && master[i].StockShipped === temp.StockShipped) {
+                                return
+                            }
+                            if (i+1 === master.length) {
+                                return linecatch.push(temp)
+                            }
+                        }
+                    });
+        }
+
+                // flag and make a note on install charges in catch array
+                let installcharge = "";
+                linecatch.forEach(line => {
+                    if (
+                        line.StockShipped === "*INSTALLMULTI" ||
+                        line.StockShipped === "*INSTALLDISH" ||
+                        line.StockShipped === "*INSTALLOTR" 
+                        ) {
+                            installcharge = line.OrderNumber
+                            linecatch.forEach(charge => {
+                                if (charge.OrderNumber === installcharge) {
+                                    console.log("install item flagged", installcharge)
+                                    charge.______________________________ = "DELETED INSTALL CHARGE";
+                                }
+                            });
+                        }
+                });
+                console.log("line catch is", linecatch);
+
+                // add paperless first stop lines to new picks if none already in the order
+                PaperLessLines(picks);
+
+                // add line catch array to picks
+                picks.push(...linecatch);
+
+            // add concat charge to new picks
+            ConcatCharge(picks);
+            
+            console.log(picks);
+
+
+    }
+
+    export const PaperLessLines = (picks) => {
+                // add paperless first stop if not already in
+                let addlines = false
+
+                let count = 0
+                picks.forEach(pick => {        
+                    count = count + 1
+                        if (PaperlessFirstStop[0].OrderNumber === pick.OrderNumber) {
+                            return addlines = false
+                        }
+                        if (count === picks.length) {
+                            return addlines = true
+                        }
+                    });
+                    if (addlines) {
+                        console.log("adding paperless")
+                        picks.push(...PaperlessFirstStop);
+                    }
     }
 
 

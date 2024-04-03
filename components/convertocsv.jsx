@@ -1,7 +1,12 @@
+// csv converter not making header if first line is missing cell info
+// if the description has " at the end it merges the next 3 cells
+  // the back slash gets added before the csv conversion
+
 const ConvertToCSV = function(objArray) {
     var json = objArray
     var fields = Object.keys(json[0])
-    var replacer = function(key, value) { return value === null ? '' : value } 
+    // here is maybe where to fill in empty cells with placeholder info
+    var replacer = function(key, value) { return value === null ? ' ' : value } 
     var csv = json.map(function(row){
       return fields.map(function(fieldName){
       return JSON.stringify(row[fieldName], replacer)

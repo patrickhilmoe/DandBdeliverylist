@@ -5,148 +5,29 @@ import * as XLSX from 'xlsx'
 import ExceltoObject from '../components/object_converter'
 import * as line from '../components/add-to-line-items'
 import { starNum } from '../components/object-arrays/starArr'
-import { processedlist, LineitemAdd, pickAdds, QuickLineitemAdd } from '../components/add-to-line-items'
+import { processedlist, LineitemAdd, pickAdds, QuickLineitemAdd, LineItemAddPicks } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
-import { PicksTest } from '../components/object-arrays/picks-2-19'
+
+import { PicksTest, MasterPicksTest } from '../components/object-arrays/picks-2-19'
 // import { stockWithCat } from '../components/object-arrays/stockwithcat'
 // import { AddressesTest } from '../components/object-arrays/addresses'
 // import { LineItemsTest } from '../components/object-arrays/line-items'
 // import { OpenOrderReportTest } from '../components/object-arrays/open-order-report'
-// import { SampleOpenOrder} from '../components/add-to-line-items'
-import { ServiceTime, SampleList, SampleListChange, ConcatCharge } from '../components/service-time'
+// import { SampleOpenOrder} from '../components/object-arrays/other-test-arrays'
+
+import { LineItemDateTest } from '../components/object-arrays/line-item-by-date';
+import { SampleList, SampleListChange } from '../components/object-arrays/other-test-arrays'
+import { newlisttest, oldlisttest } from '../components/object-arrays/other-test-arrays'
+import { ServiceTime, ConcatCharge } from '../components/service-time'
 import { MapOrder } from '../components/map-order'
 import { CheckUpdates, updatedlist, potentiallineupdate } from '../components/check-updates'
-import { newlisttest, oldlisttest } from '../components/adding-old-new'
 import { PicksKeyUpdate } from '../components/renameheader'
-import { LineItemDateTest } from '../components/object-arrays/line-item-by-date';
+import RouteAhead from '../components/route-ahead'
 
 function App() {
-  const [CatStock, setCatStock] = useState([]);
-  const [OpenOrder, setOpenOrder] = useState([]);
-  const [Addresses, setAddresses] = useState([]);
-  const [LineItems, setLineItems] = useState([]);
   const [Picks, setPicks] = useState([]);
+  const [MasterPicks, setMasterList] = useState([]);
   const [LineItemsDate, setLineItemsDate] = useState([]);
-
-  const readExcelCat = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setCatStock(d);
-    });
-
-  };
-
-  const readExcelOpenOrder = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setOpenOrder(d);
-    });
-
-  };
-
-  const readExcelAddresses = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setAddresses(d);
-    });
-
-  };
-
-  const readExcelLineItems = (file) => {
-    const promise = new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsArrayBuffer(file);
-
-      fileReader.onload = (e) => {
-        const bufferArray = e.target.result;
-
-        const wb = XLSX.read(bufferArray, { type: "buffer" });
-
-        const wsname = wb.SheetNames[0];
-
-        const ws = wb.Sheets[wsname];
-
-        const data = XLSX.utils.sheet_to_json(ws);
-
-        resolve(data);
-      };
-
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-
-    promise.then((d) => {
-      setLineItems(d);
-    });
-
-  };
 
   const readPicks = (file) => {
     const promise = new Promise((resolve, reject) => {
@@ -208,18 +89,48 @@ function App() {
 
   };
 
+  const readMasterPicks = (file) => {
+    const promise = new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsArrayBuffer(file);
+
+      fileReader.onload = (e) => {
+        const bufferArray = e.target.result;
+
+        const wb = XLSX.read(bufferArray, { type: "buffer" });
+
+        const wsname = wb.SheetNames[0];
+
+        const ws = wb.Sheets[wsname];
+
+        const data = XLSX.utils.sheet_to_json(ws);
+
+        resolve(data);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+
+    promise.then((d) => {
+      setMasterPicks(d);
+    });
+
+  };
+
   // line.Orders(line.SampleOpenOrder, line.SampleLineItems);
 
   // function to use for testing with local files
-  // function listprocessorstart() {
-  //   LineitemAdd(OpenOrderReportTest, LineItemsTest, AddressesTest, starNum, stockWithCat)
-  // }
+  function listprocessorstart() {
+    LineitemAdd(OpenOrderReportTest, LineItemsTest, AddressesTest, starNum, stockWithCat)
+  }
 
   // function to use with uploading files
-  function listprocessorstart() {
-    LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock)
-    alert("Route Ahead Report Finished!")
-  }
+  // function listprocessorstart() {
+  //   LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock)
+  //   alert("Route Ahead Report Finished!")
+  // }
 
   function integratepick() {
     pickAdds(LineitemAdd(LineItems, OpenOrder, Addresses, starNum, CatStock), Picks)
@@ -227,7 +138,7 @@ function App() {
   }
 
   function quicklineitem() {
-    QuickLineitemAdd(LineItemDateTest, PicksTest)
+    LineItemAddPicks(LineItemsDate, Picks, MasterPicks);
   }
 
   function runpickheader() {
@@ -251,61 +162,9 @@ function App() {
     <>
     <div className='container'>
     <div className='row'>
-     <div className='col'>
-      <h3>Upload These for Route Ahead</h3>
-      <div>
-          <strong>Lineitems Report</strong>
-          <input
-          type="file"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            readExcelLineItems(file);
-          }}
-        />
-      </div>      
-      <div>
-          <strong>Open Order Report</strong>
-          <input
-          type="file"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            readExcelOpenOrder(file);
-          }}
-        />
+      <div className='col'>
+        <RouteAhead />
       </div>
-      <div>
-          <strong>Address Report</strong>
-          <input
-          type="file"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            readExcelAddresses(file);
-          }}
-        />
-      </div>
-      <div>
-          <strong>Stock with Category</strong>
-          <input
-          type="file"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            readExcelCat(file);
-          }}
-        />
-      </div>
-          <br></br>
-          <br></br>
-     <div>
-      <Button variant="contained" onClick={listprocessorstart}>Route Ahead Processor</Button>
-
-      {/* <button onClick={runpickheader}>pickheader test</button> */}
-     </div>
-     <br></br>
-     <br></br>
-
-      {/* <button onClick={(CombineUpdates)}>COMBINE OLD LIST AND NEW LIST</button> */}
-      {/* <button onClick={(testEffect)}>test effect</button> */}
-     </div>
      <div className='col'>
           <h3>Pick Report</h3>
           <div>
@@ -325,6 +184,16 @@ function App() {
           onChange={(e) => {
             const file = e.target.files[0];
             readPicks(file);
+          }}
+        />
+      </div>
+      <div>
+          <strong>Master List</strong>
+          <input
+          type="file"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            readMasterPicks(file);
           }}
         />
       </div>

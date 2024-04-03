@@ -69,23 +69,19 @@ how to know if an order has been pulled off?
 
 brainstorm for adding line item report to picks
 
-if any remainder lines, then add to the order
-    -this seems tricky
-    -if partial order is there, add other lines and match contents ( to keep from having gaps )
+test entire v2 system
 
-if order is not in list add whole order to the list **check-updates file
-    - make a prompt before adding it?
+make a different page for the route ahead app to reduce confusion
+
+**Need to get the csv download figured out**
+    -if the first line is missing header info, it doesn't print the column or the ones after
+
+flagging install items is a little buggy
 
 handle changes manually? - yes, for now... >:D
-
-
-adding another place to upload existing list to combine and compare
-
     
 // taglist header names
 // OrderNumber	CustomerNumber	CustomerName	Salesperson	StockShipped	Description1	ShippingDate	QuantityToShip	LocationNumber	Row	Tagging	Oldest	Quantity
-
-headers in line items to delete ~	<A	HREF="http://@VAR_FORM_ACTION_	URL_@?SESSION_NO=@VAR_SESSION_	NO_@&ORDNO=	&LINE_NO=	&CUST_NO=	&CUST_NAME=	&REQUEST_ID=CORDDETLIN">	</A>	~_1	~_2	`	~_3	`_1	`_2
 
 // tail wind 'watch'
 npx tailwindcss -i ./src/input.css -o ./src/output.css --watch
