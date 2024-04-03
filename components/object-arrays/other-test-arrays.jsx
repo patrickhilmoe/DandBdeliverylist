@@ -3574,7 +3574,7 @@ export const oldlisttest = [
 
 // renaming header test files
 
-const SampleOpenOrder =    [
+const SampleOpenOrder1 =    [
     {
         "Ship-to City": "BELLINGHAM",
         "Salesperson": 304,
@@ -3599,7 +3599,7 @@ const SampleOpenOrder =    [
     }
 ]
 
-const SampleLineItems = [
+const SampleLineItems1 = [
     {
         "Order Number": 11314787,
         "Line Number": 80,
@@ -3632,7 +3632,7 @@ const SampleLineItems = [
     }
 ];
 
-const SampleAddresses = [
+const SampleAddresses1 = [
     {
         "@VAR_BILLNAME=": "@VAR_BILLNAME=",
         "Bill-to Name": "CASSELLA, EJ",
