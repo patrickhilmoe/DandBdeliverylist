@@ -7,17 +7,6 @@ import * as line from '../components/add-to-line-items'
 import { starNum } from '../components/object-arrays/starArr'
 import { processedlist, LineitemAdd, pickAdds, QuickLineitemAdd, LineItemAddPicks } from '../components/add-to-line-items'
 import { convert, convertV2 } from '../components/convertocsv'
-
-import { PicksTest, MasterPicksTest } from '../components/object-arrays/picks-2-19'
-// import { stockWithCat } from '../components/object-arrays/stockwithcat'
-// import { AddressesTest } from '../components/object-arrays/addresses'
-// import { LineItemsTest } from '../components/object-arrays/line-items'
-// import { OpenOrderReportTest } from '../components/object-arrays/open-order-report'
-// import { SampleOpenOrder} from '../components/object-arrays/other-test-arrays'
-
-import { LineItemDateTest } from '../components/object-arrays/line-item-by-date';
-import { SampleList, SampleListChange } from '../components/object-arrays/other-test-arrays'
-import { newlisttest, oldlisttest } from '../components/object-arrays/other-test-arrays'
 import { ServiceTime, ConcatCharge } from '../components/service-time'
 import { MapOrder } from '../components/map-order'
 import { CheckUpdates, updatedlist, potentiallineupdate } from '../components/check-updates'
